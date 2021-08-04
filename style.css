@@ -8,6 +8,9 @@ body {
   background-color: #2a2a72;
   color: #fff;
   font-family: 'Poppins', sans-serif;
+}
+
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
