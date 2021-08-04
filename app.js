@@ -1,5 +1,6 @@
 const APIURL = 'https://api.github.com/users/';
 
+const main = document.querySelector('.main');
 const formUser = document.getElementById('formUser');
 const ipSearch = document.getElementById('ipSearch');
 
@@ -23,11 +24,43 @@ async function getUser(username) {
       data
     } = await axios(APIURL + username);
 
-    console.log(data);
+    createUserCard(data);
   } catch (error) {
-    console.log(error);
+    if (error.response.status === 404) {
+      createErrorCard('No profile with the given username');
+    }
   }
+}
 
+function createUserCard(user) {
+  main.innerHTML = `
+    <div class="card">
+      <div>
+        <img src="${user.avatar_url}" alt="${user.name}" class="avatar">
+      </div>
+
+      <div class="user-info">
+        <h2>${user.name}</h2>
+        <p>${user.bio}</p>
+
+        <ul>
+          <li>${user.followers} <strong>Followers</strong></li>
+          <li>${user.following} <strong>Following</strong></li>
+          <li>${user.public_repos} <strong>Repos</strong></li>
+        </ul>
+
+        <div id="repos"></div>
+      </div>
+    </div>
+  `;
+}
+
+function createErrorCard(msg) {
+  main.innerHTML = `
+    <div class="card">
+      <h1>${msg}</h1>
+    </div> 
+  `;
 }
 
 formUser.addEventListener('submit', (e) => {
