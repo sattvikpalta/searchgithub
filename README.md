@@ -8,4 +8,4 @@ This is a GitHub user search application built using JavaScript and Axios API.
 - The response is a card with profile picture, name, bio, and the latest 10 repos 
 - The application uses Axios API to fetch users
 
-The application is live on: https://sattvikpalta.github.io/searchgithub/
+The application is live on: https://sttvk.github.io/searchgithub/
